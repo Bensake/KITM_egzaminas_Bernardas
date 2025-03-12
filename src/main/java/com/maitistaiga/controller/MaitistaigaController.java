@@ -84,8 +84,8 @@ public class MaitistaigaController {
                 case "5":
                     rodytiPatiekalus();
                     view.showMessage("Iveskite patiekalo ID (redaguoti):");
-                    int bookId = Integer.parseInt(view.getInput());
-                    redaguotiPatiekala(bookId);
+                    int patiekalasId = Integer.parseInt(view.getInput());
+                    redaguotiPatiekala(patiekalasId);
                     break;
                 case "6":
                     rodytiPatiekalus();
@@ -130,8 +130,8 @@ public class MaitistaigaController {
                 case "2":
                     rodytiPatiekalus();
                     view.showMessage("Iveskite patiekalo ID (uzsakyti):");
-                    int resBookId = Integer.parseInt(view.getInput());
-                    if (uzsakymasDAO.uzsakytiPatiekala(currentUser.getId(), resBookId)) {
+                    int uzsPatiekalasId = Integer.parseInt(view.getInput());
+                    if (uzsakymasDAO.uzsakytiPatiekala(currentUser.getId(), uzsPatiekalasId)) {
                         view.showMessage("Patiekalas uzsakytas.");
                     } else {
                         view.showMessage("Patiekalas jau buvo uzsakytas.");
@@ -169,8 +169,8 @@ public class MaitistaigaController {
         if (patiekalai.isEmpty()) {
             view.showMessage("Nerasta patiekalu.");
         } else {
-            for (Patiekalas book : patiekalai) {
-                view.showMessage(book.getId() + ": " + book.getPavadinimas());
+            for (Patiekalas patiekalas : patiekalai) {
+                view.showMessage(patiekalas.getId() + ": " + patiekalas.getPavadinimas());
             }
         }
     }
@@ -183,8 +183,8 @@ public class MaitistaigaController {
         String summary = view.getInput();
         rodytiMaitIstaigas();
         view.showMessage("Iveskite maitinimo istaigos ID:");
-        int categoryId = Integer.parseInt(view.getInput());
-        patiekalasDAO.pridetiPatiekala(title, summary, categoryId);
+        int maitIstaigaId = Integer.parseInt(view.getInput());
+        patiekalasDAO.pridetiPatiekala(title, summary, maitIstaigaId);
         view.showMessage("Patiekalas pridetas.");
     }
 
@@ -203,8 +203,8 @@ public class MaitistaigaController {
         rodytiMaitIstaigas();
         view.showMessage("Esamas maitinimo istaigos ID: " + patiekalas.getMaitIstaigaId() + ". Iveskite nauja mait istaigos ID (arba spauskite enter naudoti ta pati):");
         String catIdStr = view.getInput();
-        int categoryId = catIdStr.isEmpty() ? patiekalas.getMaitIstaigaId() : Integer.parseInt(catIdStr);
-        patiekalasDAO.redaguotiPatiekala(id, title, summary, categoryId);
+        int maitIstaigaId = catIdStr.isEmpty() ? patiekalas.getMaitIstaigaId() : Integer.parseInt(catIdStr);
+        patiekalasDAO.redaguotiPatiekala(id, title, summary, maitIstaigaId);
         view.showMessage("Patiekalas atnaujintas.");
     }
 }
