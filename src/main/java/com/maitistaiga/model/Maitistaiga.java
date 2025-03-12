@@ -1,10 +1,10 @@
-package com.library.model;
+package com.maitistaiga.model;
 
-public class Category {
+public class Maitistaiga {
     private int id;
     private String name;
 
-    public Category(int id, String name) {
+    public Maitistaiga(int id, String name) {
         this.id = id;
         this.name = name;
     }

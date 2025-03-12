@@ -1,4 +1,4 @@
-package com.library.model;
+package com.maitistaiga.model;
 
 public class User {
     private int id;

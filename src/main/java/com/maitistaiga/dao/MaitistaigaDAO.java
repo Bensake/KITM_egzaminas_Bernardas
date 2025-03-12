@@ -1,6 +1,6 @@
-package com.library.dao;
+package com.maitistaiga.dao;
 
-import com.library.model.Category;
+import com.maitistaiga.model.Maitistaiga;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAO {
-    public void addCategory(String name) throws SQLException {
-        String sql = "INSERT INTO categories (name) VALUES (?)";
+public class MaitistaigaDAO {
+    public void addMaitistaiga(String name) throws SQLException {
+        String sql = "INSERT INTO maitinimo_istaigos (name) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, name);
@@ -19,8 +19,8 @@ public class CategoryDAO {
         }
     }
 
-    public void updateCategory(int id, String name) throws SQLException {
-        String sql = "UPDATE categories SET name = ? WHERE id = ?";
+    public void updateMaitistaiga(int id, String name) throws SQLException {
+        String sql = "UPDATE maitinimo_istaigos SET name = ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, name);
@@ -29,8 +29,8 @@ public class CategoryDAO {
         }
     }
 
-    public void deleteCategory(int id) throws SQLException {
-        String sql = "DELETE FROM categories WHERE id = ?";
+    public void deleteMaitistaiga(int id) throws SQLException {
+        String sql = "DELETE FROM maitinimo_istaigos WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -38,27 +38,27 @@ public class CategoryDAO {
         }
     }
 
-    public List<Category> getAllCategories() throws SQLException {
-        String sql = "SELECT * FROM categories";
-        List<Category> categories = new ArrayList<>();
+    public List<Maitistaiga> getAllMaitistaiga() throws SQLException {
+        String sql = "SELECT * FROM maitinimo_istaigos";
+        List<Maitistaiga> maitIstaigos = new ArrayList<>();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                categories.add(new Category(rs.getInt("id"), rs.getString("name")));
+                maitIstaigos.add(new Maitistaiga(rs.getInt("id"), rs.getString("name")));
             }
         }
-        return categories;
+        return maitIstaigos;
     }
 
-    public Category getCategoryById(int id) throws SQLException {
-        String sql = "SELECT * FROM categories WHERE id = ?";
+    public Maitistaiga getMaitistaigaById(int id) throws SQLException {
+        String sql = "SELECT * FROM maitinimo_istaigos WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Category(rs.getInt("id"), rs.getString("name"));
+                    return new Maitistaiga(rs.getInt("id"), rs.getString("name"));
                 }
             }
         }

@@ -1,11 +1,11 @@
-package com.library.dao;
+package com.maitistaiga.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3310/library_db?useSSL=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/maitistaiga_db?useSSL=false";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 

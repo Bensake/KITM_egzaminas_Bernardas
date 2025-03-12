@@ -1,6 +1,6 @@
-package com.library.dao;
+package com.maitistaiga.dao;
 
-import com.library.model.User;
+import com.maitistaiga.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
